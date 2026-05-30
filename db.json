@@ -1,0 +1,120 @@
+{
+  "users": [
+    { "id": 1, "email": "user1@example.com", "password": "password" },
+    { "id": 2, "email": "user2@example.com", "password": "123" },
+    { "id": 3, "email": "user3@example.com", "password": "111" }
+  ],
+  "projects": [
+    {
+        "id": 1,
+        "name": "Project 1",
+        "description": "This is a project 1 description with some text. I don't know what else I would write but let's keep going so there's some text to work with",
+        "deadline": "2027-01-01T00:00:00",
+        "userId": 2
+    },
+    {
+        "id": 2,
+        "name": "Project 2 Important one",
+        "description": "This is a project 2 description with some text. Doesn't have to be long, just text to work with",
+        "deadline": "2026-10-10T12:00:00",
+        "userId": 1
+    },
+    {
+        "id": 3,
+        "name": "Project 3",
+        "description": "This is a project 3 description with some text.",
+        "deadline": "2028-05-17T05:15:00",
+        "userId": 3
+    }
+  ],
+  "tasks": [
+    {
+        "id": 1,
+        "projectId": 1,
+        "description": "This is a task 1 description",
+        "status": 1,
+        "priority": 1,
+        "userId": 2
+    },
+    {
+        "id": 2,
+        "projectId": 1,
+        "description": "This is a task 2 description. With some longer tesk",
+        "status": 2,
+        "priority": 1,
+        "userId": 1
+    },
+    {
+        "id": 3,
+        "projectId": 2,
+        "description": "This is a task 3 description. We will say this one is longer than the last, but who knows really.",
+        "status": 1,
+        "priority": 2,
+        "userId": 1
+    },
+    {
+        "id": 4,
+        "projectId": 1,
+        "description": "This is a task 4 description. We've now broken the ordering just to test.",
+        "status": 2,
+        "priority": 2,
+        "userId": 2
+    },
+    {
+        "id": 5,
+        "projectId": 3,
+        "description": "You won't believe this, we won't start the description with 'This is a task 5 description'",
+        "status": 3,
+        "priority": 3,
+        "userId": 3
+    },
+    {
+        "id": 6,
+        "projectId": 1,
+        "description": "Plot twist, we'll now end it the way we usually start it. This is a task 6 description",
+        "status": 1,
+        "priority": 3,
+        "userId": 3
+    },
+    {
+        "id": 7,
+        "projectId": 3,
+        "description": "Task 7 stuff",
+        "status": 3,
+        "priority": 2,
+        "userId": 3
+    },
+    {
+        "id": 8,
+        "projectId": 3,
+        "description": "I should really start using some lorem ipsum at this point",
+        "status": 2,
+        "priority": 3,
+        "userId": 3
+    },
+    {
+        "id": 9,
+        "projectId": 2,
+        "description": "But this could require opening another tab on the already flooded browser.. and take more ram.. think..",
+        "status": 2,
+        "priority": 2,
+        "userId": 1
+    },
+    {
+        "id": 10,
+        "projectId": 1,
+        "description": "Okay I think 10 is enough. This is the omega.",
+        "status": 2,
+        "priority": 3,
+        "userId": 2
+    },
+    {
+        "id": 11,
+        "projectId": 1,
+        "description": "Okay 1 more",
+        "status": 1,
+        "priority": 3,
+        "userId": 1
+    }
+  ]
+}
