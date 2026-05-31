@@ -8,53 +8,64 @@ import { ProjectFormComponent } from './components/project/project-form-componen
 import { TaskManyComponent } from './components/task/task-many-component/task-many-component';
 import { TaskDetailComponent } from './components/task/task-detail-component/task-detail-component';
 import { TaskFormComponent } from './components/task/task-form-component/task-form-component';
+import { loggedinGuard } from './guards/loggedin-guard';
 
 export const routes: Routes = [
     {
-        path: "",
-        component: HomeComponent
+        path: "login",
+        component: LoginComponent,
+        canActivate: [loggedinGuard]
     },
     {
-        path: "login",
-        component: LoginComponent
+        path: "",
+        component: HomeComponent,
+        canActivate: [loggedinGuard]
     },
     // ==================================
     // PROJECT
     // ==================================
     {
         path: "projects/new",
-        component: ProjectFormComponent
+        component: ProjectFormComponent,
+        canActivate: [loggedinGuard]
     },
     {
         path: "projects/:id/edit",
-        component: ProjectFormComponent
+        component: ProjectFormComponent,
+        canActivate: [loggedinGuard]
     },
     {
         path: "projects/:id",
-        component: ProjectDetailComponent
+        component: ProjectDetailComponent,
+        canActivate: [loggedinGuard]
     },
     {
         path: "projects",
-        component: ProjectManyComponent
+        component: ProjectManyComponent,
+        canActivate: [loggedinGuard]
     },
     // ==================================
     // TASK
     // ==================================
     {
         path: "tasks/new",
-        component: TaskFormComponent
+        component: TaskFormComponent,
+        canActivate: [loggedinGuard]
     },
     {
         path: "tasks/:id/edit",
-        component: TaskFormComponent
+        component: TaskFormComponent,
+        canActivate: [loggedinGuard]
     },
     {
         path: "tasks/:id",
-        component: TaskDetailComponent
+        component: TaskDetailComponent,
+        canActivate: [loggedinGuard]
     },
     {
         path: "tasks",
-        component: TaskManyComponent
+        component: TaskManyComponent,
+        canActivate: [loggedinGuard]
     },
     // ==================================
     {
