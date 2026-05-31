@@ -1,21 +1,26 @@
-<div>
-    {{errorMessage()}}
+<div class="login-wrapper">
+    <form class="login-form" [formGroup]="form" (submit)="login()">
+        <h1>Login</h1>
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+            @if (form.get("email")?.hasError('email') && !form.get("email")?.hasError('required')) {
+            <mat-error>Please enter a valid email address</mat-error>
+            }
+            @if (form.get("email")?.hasError('required')) {
+            <mat-error>Email is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password">
+            @if (form.get("password")?.hasError('required')) {
+            <mat-error>Password is <strong>required</strong></mat-error>
+            }
+        </mat-form-field>
+        <section class="login-buttons">
+            <button [disabled]="!form.valid" type="submit" matButton="filled">Login</button>
+            <button type="reset" matButton="outlined">Clear</button>
+        </section>
+    </form>
 </div>
-<form [formGroup]="form" (submit)="login()">
-    <div>
-        <label for="email">Email</label>
-        <input type="text" name="email" formControlName="email" required>
-        <!-- @if (!forma.controls.username.valid) { -->
-        @if (form.controls.email.hasError("required") && form.controls.email.touched) {
-            Username mora biti unet
-        }
-    </div>
-    <div>
-        <label for="password">Password</label>
-        <input type="password" name="password" formControlName="password" required>
-        @if (!form.controls.password.valid && form.controls.password.touched) {
-            Lozinka mora biti uneta
-        }
-    </div>
-    <button>Login</button>
-</form>

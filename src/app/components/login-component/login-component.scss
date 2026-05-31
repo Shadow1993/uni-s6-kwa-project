@@ -1,0 +1,39 @@
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid var(--mat-sys-outline);
+    border-radius: 10px;
+    
+    h1 {
+        text-align: center;
+        color: var(--mat-sys-primary)
+    }
+    
+    mat-form-field {
+        margin: {
+            top: 5px;
+            bottom: 10px;
+        }
+        
+    }
+
+    .login-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        button {
+            flex-grow: 1;
+        }
+    }
+}

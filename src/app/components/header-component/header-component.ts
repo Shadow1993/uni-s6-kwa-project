@@ -6,7 +6,7 @@ import { LoginService } from 'app/services/login/login-service';
   selector: 'app-header-component',
   imports: [RouterLink],
   templateUrl: './header-component.html',
-  styleUrl: './header-component.css',
+  styleUrl: './header-component.scss',
 })
 export class HeaderComponent {
   private loginService: LoginService = inject(LoginService);
