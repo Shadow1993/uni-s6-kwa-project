@@ -1,0 +1,33 @@
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Project</th>
+      <th>Status</th>
+      <th>Priority</th>
+      <th>Created By</th>
+      <th>
+        Akcija
+        <button (click)="add()">+</button>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(entity of entities(); track entity.id) {
+      <tr>
+        <td>{{entity.id}}</td>
+        <td>{{entity.projectId}}</td>
+        <td>{{entity.status}}</td>
+        <td>{{entity.priority}}</td>
+        <td>{{entity.userId}}</td>
+        <td>
+          @if(entity.id) {
+            <button (click)="detail(entity.id)">D</button>
+            <button (click)="update(entity.id)">E</button>
+            <button (click)="delete(entity.id)">X</button>
+          }
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>

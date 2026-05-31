@@ -1,0 +1,27 @@
+<form (submit)="onSubmit()" [formGroup]="entity">
+    <div>
+        <label for="projectId">Project:</label>
+        <input formControlName="projectId" type="text" name="projectId">
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <input formControlName="description" type="text" name="description">
+    </div>
+    <div>
+        <label for="status">Status:</label>
+        <input formControlName="status" type="text" name="status">
+    </div>
+    <div>
+        <label for="priority">Priority:</label>
+        <input formControlName="priority" type="text" name="priority">
+    </div>
+
+    <div>
+        @if(id() !== null) {
+            <button type="submit">Update</button>
+        }
+        @else {
+            <button type="submit">Add</button>
+        }
+  </div>
+</form>

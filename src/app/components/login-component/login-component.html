@@ -1,0 +1,21 @@
+<div>
+    {{errorMessage()}}
+</div>
+<form [formGroup]="form" (submit)="login()">
+    <div>
+        <label for="email">Email</label>
+        <input type="text" name="email" formControlName="email" required>
+        <!-- @if (!forma.controls.username.valid) { -->
+        @if (form.controls.email.hasError("required") && form.controls.email.touched) {
+            Username mora biti unet
+        }
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input type="password" name="password" formControlName="password" required>
+        @if (!form.controls.password.valid && form.controls.password.touched) {
+            Lozinka mora biti uneta
+        }
+    </div>
+    <button>Login</button>
+</form>

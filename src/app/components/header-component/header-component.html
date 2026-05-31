@@ -1,0 +1,15 @@
+<header>
+    <nav>
+        <ul>
+            <li><a [routerLink]="['']">Home</a></li>
+            <li><a [routerLink]="['projects']">Projects</a></li>
+            <li><a [routerLink]="['tasks']">Tasks</a></li>
+            @if (isLoggedIn()) {
+                <li><a (click)="logout()">Logout</a></li>
+            }
+            @else {
+                <li><a [routerLink]="['login']">Login</a></li>
+            }
+        </ul>
+    </nav>
+</header>
