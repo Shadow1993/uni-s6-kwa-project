@@ -30,7 +30,7 @@ export class LoginService {
 
   login(user: UserModel): Observable<boolean> {
     // json-server mock login
-    return this.http.get<UserModel[]>(`${this.url}?username=${user.email}&password=${user.password}`)
+    return this.http.get<UserModel[]>(`${this.url}?email=${user.email}&password=${user.password}`)
       .pipe(
         map((users: UserModel[]) => {
           if (users.length > 0) {
