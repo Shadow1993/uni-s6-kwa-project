@@ -1,4 +1,5 @@
 import { BaseModel } from "./base-model";
+import { UserModel } from "./user-model";
 
 export interface TaskModel extends BaseModel {
     projectId: number;
@@ -6,4 +7,5 @@ export interface TaskModel extends BaseModel {
     status: number;
     priority: number;
     userId: number;
+    user?: UserModel;
 }

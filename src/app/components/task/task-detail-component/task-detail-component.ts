@@ -10,5 +10,6 @@ import { TaskService } from 'app/services/task/task-service';
   styleUrl: './task-detail-component.scss',
 })
 export class TaskDetailComponent extends BaseDetail<TaskModel> {
+  protected override urlRoute: string = "tasks";
   protected override service: TaskService = inject(TaskService);
 }

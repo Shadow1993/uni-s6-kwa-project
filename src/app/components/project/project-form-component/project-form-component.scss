@@ -1,0 +1,60 @@
+    form {
+        display: flex;
+        max-width: 90%;
+        flex-direction: column;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: var(--mat-sys-surface-variant);
+
+        border-radius: 10px;
+        border: 2px solid var(--mat-sys-outline);
+
+        mat-form-field {
+            margin: 10px;
+        }
+
+        .form-actions {
+            button[type=submit] {
+                mat-icon {
+                    top: 7px;
+                    margin-top: -15px;
+                }
+            }
+        }
+
+        .date-time-picker {
+            margin: 10px;
+
+            label {
+                // Copied from mat-label to make it theme aligned
+                font-family: var(--mat-form-field-outlined-label-text-font, var(--mat-sys-body-large-font));
+                font-size: var(--mat-form-field-outlined-label-text-size, var(--mat-sys-body-large-size));
+                font-weight: var(--mat-form-field-outlined-label-text-weight, var(--mat-sys-body-large-weight));
+                letter-spacing: var(--mat-form-field-outlined-label-text-tracking, var(--mat-sys-body-large-tracking));
+                color: var(--mat-form-field-outlined-label-text-color, var(--mat-sys-on-surface-variant));
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                line-height: normal;
+                pointer-events: all;
+
+                margin-right: 20px;
+            }
+
+            input[type=datetime-local] {
+                // Copied from mat-label to make it theme aligned
+                font-family: var(--mat-form-field-outlined-label-text-font, var(--mat-sys-body-large-font));
+                font-size: var(--mat-form-field-outlined-label-text-size, var(--mat-sys-body-large-size));
+                font-weight: var(--mat-form-field-outlined-label-text-weight, var(--mat-sys-body-large-weight));
+                letter-spacing: var(--mat-form-field-outlined-label-text-tracking, var(--mat-sys-body-large-tracking));
+                color: var(--mat-form-field-outlined-label-text-color, var(--mat-sys-on-surface-variant));
+                -moz-osx-font-smoothing: grayscale;
+                -webkit-font-smoothing: antialiased;
+                line-height: normal;
+                pointer-events: all;
+
+                padding: 10px 20px;
+                border: 1px solid var(--mat-sys-outline);
+                border-radius: 5px;
+            }
+        }
+    }

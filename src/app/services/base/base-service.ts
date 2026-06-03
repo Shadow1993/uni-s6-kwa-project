@@ -9,7 +9,7 @@ export abstract class BaseService<T extends BaseModel> {
   
   protected abstract readonly url: string;
 
-  private http: HttpClient = inject(HttpClient);
+  protected http: HttpClient = inject(HttpClient);
 
   getAll() {
     return this.http.get<T[]>(this.url);

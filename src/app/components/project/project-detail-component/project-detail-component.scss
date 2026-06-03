@@ -1,0 +1,34 @@
+mat-card {
+    max-width: 90%;
+    margin: 10px auto;
+    background-color: var(--mat-sys-surface-variant);
+}
+
+mat-card-actions {
+    display: flex;
+    gap: 5px;
+
+    button {
+        color: var(--mat-sys-primary-fixed);
+        background-color: var(--mat-sys-secondary);
+    }
+}
+
+
+.task-list-wrapper {
+    max-width: 90%;
+    margin: 10px auto;
+
+    table {
+
+        th span {
+            display: inline-block;
+        }
+
+        tr.cdk-row:hover {
+            background-color: var(--mat-sys-surface-variant);
+            cursor: pointer;
+        }
+    }
+
+}

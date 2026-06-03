@@ -1,31 +1,32 @@
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Deadline</th>
-      <th>Created By</th>
-      <th>
-        Akcija
-        <button (click)="add()">+</button>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(entity of entities(); track entity.id) {
-      <tr>
-        <td>{{entity.id}}</td>
-        <td>{{entity.name}}</td>
-        <td>{{entity.deadline}}</td>
-        <td>{{entity.userId}}</td>
-        <td>
-          @if(entity.id) {
-            <button (click)="detail(entity.id)">D</button>
-            <button (click)="update(entity.id)">E</button>
-            <button (click)="delete(entity.id)">X</button>
-          }
-        </td>
-      </tr>
+<button matFab aria-label="Add a new project" (click)="add()" class="add-button" matTooltip="Add a new project">
+  <mat-icon>add</mat-icon>
+</button>
+<div class="project-wrapper">
+  @for (entity of entities(); track entity.id) {
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>{{entity.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      @if(entity.deadline) {
+      <p>
+        Deadline: {{entity.deadline | date:"dd. MMM. yyyy. '@' HH:mm"}}
+      </p>
+      }
+    </mat-card-content>
+    @if(entity.id) {
+    <mat-card-actions>
+      <button matIconButton (click)="detail(entity.id)" matTooltip="Show project details">
+        <mat-icon>info</mat-icon>
+      </button>
+      <button matIconButton (click)="update(entity.id)" matTooltip="Edit project">
+        <mat-icon>edit</mat-icon>
+      </button>
+      <button matIconButton (click)="delete(entity.id)" matTooltip="Delete project">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-card-actions>
     }
-  </tbody>
-</table>
+  </mat-card>
+  }
+</div>

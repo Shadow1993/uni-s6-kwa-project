@@ -2,11 +2,10 @@
 <header>
     <nav>
         <ul>
-
-            <li><a [routerLink]="['']">Home</a></li>
-            <li><a [routerLink]="['projects']">Projects</a></li>
-            <li><a [routerLink]="['tasks']">Tasks</a></li>
-            <li><a (click)="logout()">Logout</a></li>
+            <li><a [routerLink]="['']" matButton="tonal">Home</a></li>
+            <li><a [routerLink]="['projects']" matButton="tonal">Projects</a></li>
+            <li><a [routerLink]="['tasks']" matButton="tonal">Tasks</a></li>
+            <li><a (click)="logout()" matButton="tonal">Logout</a></li>
         </ul>
     </nav>
 </header>

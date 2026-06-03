@@ -1,5 +1,6 @@
 import { Directive, inject, OnInit, signal, WritableSignal } from "@angular/core";
 import { FormGroup } from "@angular/forms";
+import { MatSnackBar } from "@angular/material/snack-bar";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BaseModel } from "app/models/base-model";
 import { BaseService } from "app/services/base/base-service";
@@ -9,6 +10,7 @@ export abstract class BaseForm<T extends BaseModel> implements OnInit {
 
   private router: Router = inject(Router);
   private activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  private snackBar = inject(MatSnackBar);
   protected abstract service: BaseService<T>;
   protected abstract urlRoute: string;
   abstract entity: FormGroup;
@@ -32,9 +34,19 @@ export abstract class BaseForm<T extends BaseModel> implements OnInit {
   onSubmit(): void {
     const currentId = this.id();
     if (currentId !== null) {
-      this.service.update(currentId, this.entity.value).subscribe(this.redirect);
+      this.service.update(currentId, this.entity.value).subscribe((r) => {
+        this.snackBar.open("Updated item successfully", 'X', { duration: 3000, verticalPosition: 'top', horizontalPosition: 'right' });
+        this.redirect();
+      }, (err) => {
+        this.snackBar.open("Something went wrong..", 'X', { duration: 3000, verticalPosition: 'top', horizontalPosition: 'right' });
+      });
     } else {
-      this.service.create(this.entity.value).subscribe(this.redirect);
+      this.service.create(this.entity.value).subscribe((r) => {
+        this.snackBar.open("Created item successfully", 'X', { duration: 3000, verticalPosition: 'top', horizontalPosition: 'right' });
+        this.redirect();
+      }, (err) => {
+        this.snackBar.open("Something went wrong..", 'X', { duration: 3000, verticalPosition: 'top', horizontalPosition: 'right' });
+      });
     }
   }
 

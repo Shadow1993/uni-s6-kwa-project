@@ -7,4 +7,8 @@ import { ProjectModel } from 'app/models/project-model';
 })
 export class ProjectService extends BaseService<ProjectModel> {
   protected override url: string = "http://localhost:3000/projects";
+
+  override getById(id: number) {
+    return this.http.get<ProjectModel>(`${this.url}/${id}?_expand=user`);
+  }
 }
