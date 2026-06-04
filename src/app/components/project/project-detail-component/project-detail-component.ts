@@ -28,8 +28,6 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
   protected override service: ProjectService = inject(ProjectService);
   private taskService: TaskService = inject(TaskService);
 
-  tasks: WritableSignal<TaskModel[]> = signal([]);
-
   displayedColumns: string[] = ['id', 'userEmail', 'status', 'priority'];
   dataSource = new MatTableDataSource<TaskModel>([]);
 
@@ -50,7 +48,7 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
     this.dataSource.filterPredicate = (data: TaskModel, filter: string) => {
       const searchTerms = JSON.parse(filter);
 
-      // Filter is 0 if not sent
+      // Filter is 0 if not received
       const matchesStatus = searchTerms.status === 0 || data.status === searchTerms.status;
       const matchesPriority = searchTerms.priority === 0 || data.priority === searchTerms.priority;
 
@@ -69,10 +67,25 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
   }
 
   override ngOnInit(): void {
+    // this.activatedRoute.params.subscribe((parameters) => {
+    //   if (parameters["id"]) {
+    //     this.taskService.getAllByProjectId(parameters["id"]).subscribe((tasks: TaskModel[]) => {
+    //       // this.tasks.set(tasks);
+    //       this.dataSource.data = tasks;
+    //       // this.dataSource.data = tasks;
+    //     });
+    //     this.service.getById(parameters["id"]).subscribe((entity: ProjectModel) => {
+    //       this.entity.set(entity);
+    //     });
+    //   }
+    // });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
     this.activatedRoute.params.subscribe((parameters) => {
       if (parameters["id"]) {
         this.taskService.getAllByProjectId(parameters["id"]).subscribe((tasks: TaskModel[]) => {
-          this.tasks.set(tasks);
           this.dataSource.data = tasks;
         });
         this.service.getById(parameters["id"]).subscribe((entity: ProjectModel) => {
@@ -80,10 +93,6 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
         });
       }
     });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(column: 'status' | 'priority', value: number) {
