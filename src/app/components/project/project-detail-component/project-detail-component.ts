@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, Component, inject, OnInit, signal, ViewChild, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, effect, inject, signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,7 +22,7 @@ import { ReferencePipe } from 'app/pipes/reference/reference-pipe';
   templateUrl: './project-detail-component.html',
   styleUrl: './project-detail-component.scss',
 })
-export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements OnInit, AfterViewInit {
+export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements AfterViewInit {
 
   protected override urlRoute: string = "projects";
   protected override service: ProjectService = inject(ProjectService);
@@ -44,7 +44,7 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
   constructor() {
     super();
 
-    // Filter matching both
+    // Filter matching both status and priority
     this.dataSource.filterPredicate = (data: TaskModel, filter: string) => {
       const searchTerms = JSON.parse(filter);
 
@@ -64,35 +64,24 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
           return (item as any)[property];
       }
     };
-  }
 
-  override ngOnInit(): void {
-    // this.activatedRoute.params.subscribe((parameters) => {
-    //   if (parameters["id"]) {
-    //     this.taskService.getAllByProjectId(parameters["id"]).subscribe((tasks: TaskModel[]) => {
-    //       // this.tasks.set(tasks);
-    //       this.dataSource.data = tasks;
-    //       // this.dataSource.data = tasks;
-    //     });
-    //     this.service.getById(parameters["id"]).subscribe((entity: ProjectModel) => {
-    //       this.entity.set(entity);
-    //     });
-    //   }
-    // });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.activatedRoute.params.subscribe((parameters) => {
-      if (parameters["id"]) {
-        this.taskService.getAllByProjectId(parameters["id"]).subscribe((tasks: TaskModel[]) => {
+    // When entity is registered from BaseDetail, it will get the tasks
+    effect(() => {
+      const id = this.entity()?.id;
+      if (id !== undefined) {
+        this.taskService.getAllByProjectId(id).subscribe((tasks: TaskModel[]) => {
           this.dataSource.data = tasks;
-        });
-        this.service.getById(parameters["id"]).subscribe((entity: ProjectModel) => {
-          this.entity.set(entity);
         });
       }
     });
+  }
+  
+  ngAfterViewInit() {
+    // Sort by id on load to avoid the extra press of the id header on it as it is initially sorted by that
+    this.sort.active = 'id';
+    this.sort.direction = 'asc';
+    
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(column: 'status' | 'priority', value: number) {
