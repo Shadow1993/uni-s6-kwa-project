@@ -25,7 +25,18 @@ mat-card-actions {
     width: 50%;
     display: flex;
     flex-direction: column;
+    
     &:nth-child(2) {
         border-left: 1px solid var(--mat-sys-outline)
     }
+}
+
+.project {
+    color: var(--mat-sys-secondary);
+    background-color: var(--mat-sys-surface-variant);
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid var(--mat-sys-outline);
+    font-weight: bold;
 }

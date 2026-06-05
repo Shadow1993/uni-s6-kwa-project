@@ -1,9 +1,8 @@
 <mat-card appearance="outlined">
     @if (entity(); as ent) {
     <div class="split">
-
         <mat-card-header>
-            <mat-card-title>[ID: {{ent.id}}] <span
+            <mat-card-title>[Task ID: {{ent.id}}] Project: <span class="project"
                     [routerLink]="['/projects', ent.project?.id]">{{ent.project?.name}}</span></mat-card-title>
             <mat-card-subtitle>
                 <p>Created By: {{ent.user?.email ?? "Unavailable"}}</p>
