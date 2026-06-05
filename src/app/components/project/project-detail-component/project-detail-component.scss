@@ -21,8 +21,30 @@ mat-card-actions {
 
     table {
 
-        th span {
-            display: inline-block;
+        th {
+            position: relative;
+
+            span {
+                display: inline-block;
+            }
+
+            button {
+
+                border: 1px solid var(--mat-sys-outline);
+                border-radius: 2px;
+                width: 22px;
+                height: 22px;
+                position: absolute;
+                bottom: 16px;
+                margin-left: 5px;
+
+                mat-icon {
+                    position: absolute;
+                    left: -3px;
+                    top: 2px;
+                    font-size: 16px;
+                }
+            }
         }
 
         tr.cdk-row:hover {
@@ -30,5 +52,6 @@ mat-card-actions {
             cursor: pointer;
         }
     }
+
 
 }

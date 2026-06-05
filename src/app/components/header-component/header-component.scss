@@ -1,10 +1,12 @@
 header {
+    margin-top: 0;
     border-bottom: 2px solid var(--mat-sys-outline);
-    background-color: var(--mat-sys-surface);
-    
+    background-color: var(--mat-sys-surface-tint);
+
     ul {
-        padding: 10px;
         margin-left: 5px;
+        margin-top: 0;
+        padding-top: 15px;
         padding-left: 15px;
         display: flex;
         gap: 10px;
@@ -12,6 +14,14 @@ header {
         li {
             list-style: none;
             display: inline-block;
+
+            a {
+                border: 2px solid var(--mat-sys-outline);
+            }
+            &.logout {
+                position: absolute;
+                right: 20px;
+            }
         }
     }
 

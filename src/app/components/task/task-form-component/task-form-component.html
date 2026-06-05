@@ -1,27 +1,52 @@
-<form (submit)="onSubmit()" [formGroup]="entity">
-    <div>
-        <label for="projectId">Project:</label>
-        <input formControlName="projectId" type="text" name="projectId">
-    </div>
-    <div>
-        <label for="description">Description:</label>
-        <input formControlName="description" type="text" name="description">
-    </div>
-    <div>
-        <label for="status">Status:</label>
-        <input formControlName="status" type="text" name="status">
-    </div>
-    <div>
-        <label for="priority">Priority:</label>
-        <input formControlName="priority" type="text" name="priority">
+<form (submit)="onSubmit()" [formGroup]="entity" class="form-container">
+    <div class="split">
+        <mat-form-field>
+            <mat-label>Project</mat-label>
+            <mat-select name="projectId" formControlName="projectId">
+                @for (project of projects(); track project.id) {
+                <mat-option [value]="project.id">{{project.name}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <mat-select name="status" formControlName="status">
+                @for (status of statusOptions(); track status.id) {
+                <mat-option [value]="status.id">{{status.label}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Priority</mat-label>
+            <mat-select name="priority" formControlName="priority">
+                @for (priority of priorityOptions(); track priority.id) {
+                <mat-option [value]="priority.id">{{priority.label}}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <div class="form-actions">
+            <button matButton="filled" type="submit" [disabled]="entity.invalid">
+                <!-- Container solves a warning that was showing up -->
+                <ng-container>
+                    @if (id() !== null) {
+                    <mat-icon>edit</mat-icon> Update Project
+                    } @else {
+                    <mat-icon>save</mat-icon> Add Project
+                    }
+                </ng-container>
+            </button>
+            <button matButton="outlined" type="reset"><mat-icon>delete</mat-icon> Clear</button>
+        </div>
     </div>
 
-    <div>
-        @if(id() !== null) {
-            <button type="submit">Update</button>
-        }
-        @else {
-            <button type="submit">Add</button>
-        }
-  </div>
+    <div class="split">
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" rows="9"></textarea>
+        </mat-form-field>
+    </div>
+
 </form>

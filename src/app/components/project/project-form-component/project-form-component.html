@@ -1,36 +1,45 @@
 <form (submit)="onSubmit()" [formGroup]="entity" class="form-container">
 
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Project Name</mat-label>
-        <input matInput formControlName="name">
-        @if (entity.get('name')?.hasError('required') && entity.get('name')?.touched) {
-        <mat-error>Project name is required</mat-error>
-        }
-    </mat-form-field>
+    <div class="split">
 
-    <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Description</mat-label>
-        <textarea matInput formControlName="description" rows="4"></textarea>
-    </mat-form-field>
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Project Name</mat-label>
+            <input matInput formControlName="name">
+            @if (entity.get('name')?.hasError('required') && entity.get('name')?.touched) {
+            <mat-error>Project name is required</mat-error>
+            }
+        </mat-form-field>
 
-    <!-- Angular Material variant for date AND time picker just doesn't work properly -->
-    <div class="date-time-picker">
-        <label for="deadline">Deadline</label>
-        <input type="datetime-local" formControlName="deadline" name="deadline" id=deadline>
+        <!-- Angular Material variant for date AND time picker just doesn't work properly -->
+        <div class="date-time-picker">
+            <label for="deadline">Deadline</label>
+            <input type="datetime-local" formControlName="deadline" name="deadline" id=deadline>
+        </div>
+
+        <div class="form-actions">
+            <button matButton="filled" type="submit" [disabled]="entity.invalid">
+                <!-- Container solves a warning that was showing up -->
+                <ng-container>
+                    @if (id() !== null) {
+                    <mat-icon>edit</mat-icon> Update Project
+                    } @else {
+                    <mat-icon>save</mat-icon> Add Project
+                    }
+                </ng-container>
+            </button>
+            <button matButton="outlined" type="reset"><mat-icon>delete</mat-icon> Clear</button>
+        </div>
     </div>
 
-    <div class="form-actions">
-        <button matButton="filled" type="submit" [disabled]="entity.invalid">
-            <!-- Container solves a warning that was showing up -->
-            <ng-container>
-                @if (id() !== null) {
-                <mat-icon>edit</mat-icon> Update Project
-                } @else {
-                <mat-icon>save</mat-icon> Add Project
-                }
-            </ng-container>
-        </button>
-        <button matButton="outlined" type="reset"><mat-icon>delete</mat-icon> Clear</button>
+    <div class="split">
+        <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description" rows="5"></textarea>
+        </mat-form-field>
     </div>
+
+
+
+
 
 </form>

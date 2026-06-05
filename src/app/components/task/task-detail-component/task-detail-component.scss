@@ -1,0 +1,31 @@
+mat-card {
+    display: flex;
+    flex-direction: row;
+    max-width: 90%;
+    margin: 10px auto;
+    background-color: var(--mat-sys-surface-variant);
+
+    h2 {
+        margin: 5px auto;
+        text-align: center;
+    }
+}
+
+mat-card-actions {
+    padding: 16px;
+    gap: 5px;
+
+    button {
+        color: var(--mat-sys-primary-fixed);
+        background-color: var(--mat-sys-secondary);
+    }
+}
+
+.split {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    &:nth-child(2) {
+        border-left: 1px solid var(--mat-sys-outline)
+    }
+}

@@ -1,7 +1,7 @@
 <button matFab aria-label="Add a new project" (click)="add()" class="add-button" matTooltip="Add a new project">
   <mat-icon>add</mat-icon>
 </button>
-<div class="project-wrapper">
+<div class="wrapper">
   @for (entity of entities(); track entity.id) {
   <mat-card appearance="outlined">
     <mat-card-header>

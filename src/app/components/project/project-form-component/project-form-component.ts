@@ -11,7 +11,7 @@ import { ProjectService } from 'app/services/project/project-service';
 
 @Component({
   selector: 'app-project-form-component',
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule, MatIconModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatIconModule, MatInputModule, MatButtonModule],
   providers: [],
   templateUrl: './project-form-component.html',
   styleUrl: './project-form-component.scss',
