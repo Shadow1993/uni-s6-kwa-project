@@ -11,10 +11,11 @@ import { findColorReference, priorityReferences, ReferenceModel, statusReference
 import { TaskModel } from 'app/models/task-model';
 import { ReferencePipe } from 'app/pipes/reference/reference-pipe';
 import { TaskService } from 'app/services/task/task-service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-task-many-component',
-  imports: [MatButtonModule, MatTableModule, MatIconModule, MatMenuModule, RouterLink, ReferencePipe, MatTooltip, MatMenuModule, MatSortModule],
+  imports: [MatButtonModule, MatTableModule, MatIconModule, MatMenuModule, RouterLink, ReferencePipe, MatTooltip, MatMenuModule, MatSortModule, MatProgressSpinnerModule],
   templateUrl: './task-many-component.html',
   styleUrl: './task-many-component.scss',
 })

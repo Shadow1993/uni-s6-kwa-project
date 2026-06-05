@@ -72,4 +72,7 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let task; let row; columns: displayedColumns;"></tr>
   </table>
+  @if (entities().length <= 0) {
+    <mat-spinner></mat-spinner>
+  }
 </div>
