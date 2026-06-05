@@ -1,6 +1,9 @@
 <button matFab aria-label="Add a new task" (click)="add()" class="add-button" matTooltip="Add a new task">
   <mat-icon>add</mat-icon>
 </button>
+<button [hidden]="!isVisible()" matFab aria-label="Back to top" (click)="scrollToTop()" class="backtotop-button" matTooltip="Add a new task">
+  <mat-icon>keyboard_arrow_up</mat-icon>
+</button>
 <div class="wrapper">
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z1">
 

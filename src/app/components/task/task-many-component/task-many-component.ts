@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, effect, inject, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, effect, HostListener, inject, signal, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
@@ -11,7 +11,7 @@ import { findColorReference, priorityReferences, ReferenceModel, statusReference
 import { TaskModel } from 'app/models/task-model';
 import { ReferencePipe } from 'app/pipes/reference/reference-pipe';
 import { TaskService } from 'app/services/task/task-service';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-task-many-component',
@@ -23,6 +23,17 @@ export class TaskManyComponent extends BaseMany<TaskModel> implements AfterViewI
   protected override service: TaskService = inject(TaskService);
   protected override urlRoute: string = "tasks";
   private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+  isVisible = signal(false);
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.isVisible.set(window.scrollY > 300);
+  }
+  scrollToTop() {
+    window.scrollTo({
+      top: 0
+    });
+  }
 
   displayedColumns: string[] = ['id', 'projectName', 'userEmail', 'status', 'priority', 'action'];
   dataSource = new MatTableDataSource<TaskModel>([]);

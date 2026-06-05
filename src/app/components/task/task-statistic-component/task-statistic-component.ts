@@ -6,7 +6,6 @@ import { ChartConfiguration, ChartData, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
-  standalone: true,
   selector: 'app-task-statistic-component',
   imports: [BaseChartDirective, MatCardModule],
   templateUrl: './task-statistic-component.html',

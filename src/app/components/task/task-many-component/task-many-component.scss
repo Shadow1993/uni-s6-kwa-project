@@ -56,6 +56,12 @@
     left: 20px;
 }
 
+.backtotop-button {
+    position: fixed;
+    bottom: 100px;
+    left: 20px;
+}
+
 mat-spinner {
     margin-top: calc(50vh - 100px);
     align-self: center;

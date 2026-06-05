@@ -27,8 +27,8 @@ export class TaskFormComponent extends BaseForm<TaskModel> {
   override entity = new FormGroup({
     projectId: new FormControl("", Validators.required),
     description: new FormControl(""),
-    status: new FormControl(0),
-    priority: new FormControl(0),
+    status: new FormControl(1),
+    priority: new FormControl(1),
     userId: new FormControl(this.loginService.getCurrentUser()?.id)
   });
 
