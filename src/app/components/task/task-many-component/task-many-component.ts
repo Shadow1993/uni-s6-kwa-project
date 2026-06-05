@@ -7,7 +7,7 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltip } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { BaseMany } from 'app/components/base/base-many/base-many';
-import { priorityReferences, ReferenceModel, statusReferences } from 'app/models/reference-model';
+import { findColorReference, priorityReferences, ReferenceModel, statusReferences } from 'app/models/reference-model';
 import { TaskModel } from 'app/models/task-model';
 import { ReferencePipe } from 'app/pipes/reference/reference-pipe';
 import { TaskService } from 'app/services/task/task-service';
@@ -28,6 +28,7 @@ export class TaskManyComponent extends BaseMany<TaskModel> implements AfterViewI
 
   statusOptions = signal<ReferenceModel[]>(statusReferences);
   priorityOptions = signal<ReferenceModel[]>(priorityReferences);
+  findColor = findColorReference;
 
   filterValues = {
     status: 0,

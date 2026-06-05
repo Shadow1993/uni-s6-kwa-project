@@ -54,7 +54,7 @@
             <mat-icon>filter_alt</mat-icon>
           </button>
         </th>
-        <td mat-cell *matCellDef="let task"> {{task.status | reference: 'status'}} </td>
+        <td mat-cell *matCellDef="let task" [style.background-color]="findColor('status', task.status)"> {{task.status | reference: 'status'}} </td>
       </ng-container>
 
       <mat-menu #statusFilter="matMenu">
@@ -70,7 +70,7 @@
             <mat-icon>filter_alt</mat-icon>
           </button>
         </th>
-        <td mat-cell *matCellDef="let task"> {{task.priority | reference: 'priority'}} </td>
+        <td mat-cell *matCellDef="let task" [style.background-color]="findColor('priority', task.priority)"> {{task.priority | reference: 'priority'}} </td>
       </ng-container>
 
       <mat-menu #priorityFilter="matMenu">
@@ -84,3 +84,5 @@
     </table>
   </div>
 </div>
+
+<app-task-statistic-component [tasksInput]="tasks"></app-task-statistic-component>

@@ -1,0 +1,45 @@
+mat-card {
+    width: 100%;
+    max-width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 2px solid var(--mat-sys-outline);
+    border-radius: 10px;
+    background-color: var(--mat-sys-secondary-fixed);
+
+    mat-card-header {
+        align-self: center;
+        color: var(--mat-sys-primary)
+    }
+
+    .navigable {
+        margin-top: 20px;
+
+        background-color: var(--mat-sys-surface-variant);
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: 1px solid var(--mat-sys-outline);
+        text-align: center;
+
+        // Copied from mat-label to make it theme aligned
+        font-family: var(--mat-form-field-outlined-label-text-font, var(--mat-sys-body-large-font));
+        font-size: var(--mat-form-field-outlined-label-text-size, var(--mat-sys-body-large-size));
+        font-weight: var(--mat-form-field-outlined-label-text-weight, var(--mat-sys-body-large-weight));
+        letter-spacing: var(--mat-form-field-outlined-label-text-tracking, var(--mat-sys-body-large-tracking));
+        color: var(--mat-form-field-outlined-label-text-color, var(--mat-sys-on-surface-variant));
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        line-height: normal;
+        pointer-events: all;
+    }
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}

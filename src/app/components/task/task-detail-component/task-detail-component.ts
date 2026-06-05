@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltip } from '@angular/material/tooltip';
 import { RouterLink } from '@angular/router';
 import { BaseDetail } from 'app/components/base/base-detail/base-detail';
+import { findColorReference } from 'app/models/reference-model';
 import { TaskModel } from 'app/models/task-model';
 import { ReferencePipe } from 'app/pipes/reference/reference-pipe';
 import { TaskService } from 'app/services/task/task-service';
@@ -18,4 +19,5 @@ import { TaskService } from 'app/services/task/task-service';
 export class TaskDetailComponent extends BaseDetail<TaskModel> {
   protected override urlRoute: string = "tasks";
   protected override service: TaskService = inject(TaskService);
+  findColor = findColorReference;
 }

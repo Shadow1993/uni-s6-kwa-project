@@ -1,0 +1,29 @@
+.stats-container {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+
+  .chart-card {
+    flex: 1;
+    min-width: 300px;
+    padding: 16px;
+
+    mat-card-header {
+      margin-bottom: 16px;
+    }
+
+    .chart-wrapper {
+      position: relative;
+      height: 300px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .no-data {
+      color: var(--mat-sys-outline);
+      font-style: italic;
+    }
+  }
+}

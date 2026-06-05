@@ -1,1 +1,10 @@
-<h1>Page not found</h1>
+<div class="wrapper">
+    <mat-card appearance="outlined">
+        <mat-card-header>
+            <mat-card-title>404: Page not found</mat-card-title>
+            @if (!isLoggedIn()) {
+                <mat-card-subtitle class="navigable" (click)="goToLogin()">Go to Login</mat-card-subtitle>
+            }
+        </mat-card-header>
+    </mat-card>
+</div>

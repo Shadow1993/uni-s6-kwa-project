@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { AfterViewInit, ChangeDetectorRef, Component, effect, inject, signal, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, effect, inject, signal, ViewChild, WritableSignal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,16 +9,17 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTooltip } from '@angular/material/tooltip';
 import { BaseDetail } from 'app/components/base/base-detail/base-detail';
 import { ProjectModel } from 'app/models/project-model';
-import { priorityReferences, ReferenceModel, statusReferences } from 'app/models/reference-model';
+import { findColorReference, priorityReferences, ReferenceModel, statusReferences } from 'app/models/reference-model';
 import { TaskModel } from 'app/models/task-model';
 import { ProjectService } from 'app/services/project/project-service';
 import { TaskService } from 'app/services/task/task-service';
 import { RouterLink } from "@angular/router";
 import { ReferencePipe } from 'app/pipes/reference/reference-pipe';
+import { TaskStatisticComponent } from 'app/components/task/task-statistic-component/task-statistic-component';
 
 @Component({
   selector: 'app-project-detail-component',
-  imports: [MatCardModule, MatButtonModule, DatePipe, MatIconModule, MatTooltip, MatTableModule, MatMenuModule, MatSortModule, RouterLink, ReferencePipe],
+  imports: [MatCardModule, MatButtonModule, DatePipe, MatIconModule, MatTooltip, MatTableModule, MatMenuModule, MatSortModule, RouterLink, ReferencePipe, TaskStatisticComponent],
   templateUrl: './project-detail-component.html',
   styleUrl: './project-detail-component.scss',
 })
@@ -31,9 +32,11 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
 
   displayedColumns: string[] = ['id', 'userEmail', 'status', 'priority'];
   dataSource = new MatTableDataSource<TaskModel>([]);
+  tasks: WritableSignal<TaskModel[]> = signal([]);
 
   statusOptions = signal<ReferenceModel[]>(statusReferences);
   priorityOptions = signal<ReferenceModel[]>(priorityReferences);
+  findColor = findColorReference;
 
   filterValues = {
     status: 0,
@@ -71,6 +74,7 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
       const id = this.entity()?.id;
       if (id !== undefined) {
         this.taskService.getAllByProjectId(id).subscribe((tasks: TaskModel[]) => {
+          this.tasks.set(tasks);
           this.dataSource.data = tasks;
         });
       }
