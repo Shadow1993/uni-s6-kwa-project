@@ -3,7 +3,9 @@
     <mat-card-title>[ID: {{entity()?.id}}] {{entity()?.name}}</mat-card-title>
     <mat-card-subtitle>
       <p>Created By: {{entity()?.user?.email ?? "Unavailable"}}</p>
-      <p>Deadline: {{entity()?.deadline | date:"dd. MMM. yyyy. '@' HH:mm"}}</p>
+      @if (entity()?.deadline) {
+        <p>Deadline: {{entity()?.deadline | date:"dd. MMM. yyyy. '@' HH:mm"}}</p>
+      }
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>

@@ -45,7 +45,7 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
   constructor() {
     super();
 
-    // Filter matching both
+    // Filter matching both status and priority
     this.dataSource.filterPredicate = (data: TaskModel, filter: string) => {
       const searchTerms = JSON.parse(filter);
 
@@ -66,6 +66,7 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
       }
     };
 
+    // When entity is registered from BaseDetail, it will get the tasks
     effect(() => {
       const id = this.entity()?.id;
       if (id !== undefined) {
@@ -73,7 +74,6 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
           this.dataSource.data = tasks;
         });
       }
-
     });
   }
 
@@ -86,7 +86,8 @@ export class ProjectDetailComponent extends BaseDetail<ProjectModel> implements 
 
     // prevents error and detects sort change
     this.cdr.detectChanges();
-  }
+  };
+
 
   applyFilter(column: 'status' | 'priority', value: number) {
     this.filterValues[column] = value;
